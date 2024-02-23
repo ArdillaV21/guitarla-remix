@@ -118,3 +118,34 @@
     .footer .copyright{
       text-align: center;
     }
+    .error,
+    .error-enlace{
+      font-size: 6rem;
+      text-align: center;
+      margin-top: 15rem;
+
+    }
+    .error-enlace{
+      display: block;
+      color: var(--primary);
+      text-decoration: none;
+      font-size: 3rem;
+      margin-bottom: 20rem;
+    }
+    .enlace{
+      margin-top: 2rem;
+      display: block;
+      background-color: var(--black);
+      color: var(--white);
+      text-decoration: none;
+      padding: 1rem;
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 1.2rem;
+      font-weight: 700;
+      transition-property: background-color;
+      transition-duration: 300ms;
+  }
+  .enlace:hover{
+      background-color: var(--primary);
+  }

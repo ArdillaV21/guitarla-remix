@@ -1,5 +1,6 @@
 // App.jsx
-import { Meta, Links, Outlet, Scripts, LiveReload} from '@remix-run/react';
+import { Meta, Links, Outlet, Scripts, LiveReload, isRouteErrorResponse, useRouteError } from '@remix-run/react';
+import { Link } from '@remix-run/react';
 import styles from '~/styles/index.css';
 import Header from '~/components/Header';
 import Footer from '~/components/Footer';
@@ -62,3 +63,20 @@ function Document({ children }) {
         </html>
     );
 }
+
+
+/**Manejo de Errores */
+export function ErrorBoundary() {
+    const error = useRouteError();
+  
+    if (isRouteErrorResponse(error)) {
+      return (
+        <Document>
+          <p className='error'>
+            {error.status} {error.statusText}
+          </p>
+          <Link className='error-enlace' to="/">Tal vez quieras volver a la pagina principal</Link>
+        </Document>
+      );
+    } 
+  }
