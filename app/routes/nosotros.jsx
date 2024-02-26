@@ -1,6 +1,5 @@
 import imagen from '../../public/img/nosotros.jpg'
 import styles from '~/styles/nosotros.css'
-
 export function meta(){
   return [
     {title: 'GuitarLA - Sobre Nosotros'},
@@ -22,6 +21,7 @@ export function links(){
 }
 
 function Nosotros() {
+
   return (
     <main className="contenedor nosotros">
         <h2 className="heading">Nosotros</h2>

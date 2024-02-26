@@ -6,7 +6,6 @@ export default function Post({post}) {
 
     const {contenido, imagen, titulo, url, publishedAt} = post.attributes
     
-    console.log(post)
     const texto = contenido.map(desc => {
         return desc.children.map(descrip => {
           return descrip.text
@@ -21,7 +20,7 @@ export default function Post({post}) {
             <h3>{post.attributes.Titulo}</h3>
             <p className="fecha">{formatearFecha(publishedAt)}</p>
             <p className="resumen">{texto}</p>
-            <Link className="enlace" to={`/posts/${url}`}>Leer Post</Link>
+            <Link className="enlace" to={`/blog/${url}`}>Leer Post</Link>
         </div>
        </article>
     )

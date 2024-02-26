@@ -1,4 +1,5 @@
 // App.jsx
+import { useState } from 'react';
 import { Meta, Links, Outlet, Scripts, LiveReload, isRouteErrorResponse, useRouteError } from '@remix-run/react';
 import { Link } from '@remix-run/react';
 import styles from '~/styles/index.css';
@@ -39,9 +40,37 @@ export function links() {
 }
 
 export default function App() {
+
+    const [carrito, setCarrito] = useState([])
+
+    const agregarCarrito = guitarra => {
+        if(carrito.some(guitarraState => guitarraState.id === guitarra.id)){
+            //Iterar sobre el arreglo, e identificar el elemento duplicado
+            const carritoActualizado = carrito.map(guitarraState => {
+                if(guitarraState.id === guitarra.id){
+                    //Reescribir la cantidad
+                    guitarraState.cantidad = guitarra.cantidad
+                }
+                return guitarraState
+            })
+            //Añadir al carrito
+            setCarrito(carritoActualizado)
+        }else{
+            //Registro nuevo, agregar carrito
+            setCarrito([...carrito, guitarra])
+        }
+    }
     return (
         <Document>
-            <Outlet />
+            <Outlet
+                context={{
+                    agregarCarrito,
+                    carrito
+                }}
+            
+            />
+
+
         </Document>
     );
 }

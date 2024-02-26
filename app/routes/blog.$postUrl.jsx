@@ -1,27 +1,6 @@
 import {  useLoaderData } from "@remix-run/react"
 import { getPost } from "~/models/posts.server"
-import styles from '~/styles/blog.css'
 import { formatearFecha } from "~/utils/helpers"
-
-export function links(){
-  return[
-    {
-      rel: 'stylesheet',
-      href: styles
-    }
-  ]
-}
-export async function loader({params}){
-  const{postUrl} = params
-  const post = await getPost(postUrl)
-  if(post.data.length === 0){
-    throw new Response('', {
-      status: 404,
-      statusText: 'Post No Encontrada'
-    })
-  }
-  return post
-}
 
 export function meta({data}){
   if(!data){
@@ -36,6 +15,19 @@ export function meta({data}){
   ]
 }
 
+
+export async function loader({params}){
+  const{postUrl} = params
+  const post = await getPost(postUrl)
+  if(post.data.length === 0){
+    throw new Response('', {
+      status: 404,
+      statusText: 'Post No Encontrada'
+    })
+  }
+  return post
+}
+
 function Posts() {
   
   const post = useLoaderData()
@@ -46,8 +38,9 @@ function Posts() {
       return descrip.text
     })
   })
+
   return (
-    <article className="contenedor post mt-3">
+    <article className="post mt-3">
         <img className="imagen" src={imagen.data.attributes.url} alt={`Imgen blog ${titulo}`} />
         <div className="contenido">
             <h3>{post.data[0].attributes.Titulo}</h3>
