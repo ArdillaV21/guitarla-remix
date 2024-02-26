@@ -59,6 +59,7 @@
     top: 3rem;
 }
 .btn-eliminar{
+    all: unset;
     position: absolute;
     top: 3rem;
     right: 1rem;
