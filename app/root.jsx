@@ -1,10 +1,11 @@
 // App.jsx
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Meta, Links, Outlet, Scripts, LiveReload, isRouteErrorResponse, useRouteError } from '@remix-run/react';
 import { Link } from '@remix-run/react';
 import styles from '~/styles/index.css';
 import Header from '~/components/Header';
 import Footer from '~/components/Footer';
+import { createMemorySessionStorage } from '@remix-run/node';
 export function meta() {
     return [
         { charset: 'utf-8'} ,
@@ -41,7 +42,12 @@ export function links() {
 
 export default function App() {
 
-    const [carrito, setCarrito] = useState([])
+    const carritoLS = typeof window !== 'undefined' ? JSON.parse(localStorage.getItem('carrito')) ?? [] : null
+    const [carrito, setCarrito] = useState(carritoLS)
+
+    useEffect(() => {
+        localStorage.setItem('carrito', JSON.stringify(carrito))
+    },[carrito])
 
     const agregarCarrito = guitarra => {
         if(carrito.some(guitarraState => guitarraState.id === guitarra.id)){
@@ -60,12 +66,27 @@ export default function App() {
             setCarrito([...carrito, guitarra])
         }
     }
+    const actualizarCantidad = guitarra => {
+        const carritoActualizado = carrito.map(guitarraState => {
+            if(guitarraState.id === guitarra.id){
+                guitarraState.cantidad = guitarra.cantidad
+            }
+            return guitarraState
+        })
+        setCarrito(carritoActualizado)
+    }
+    const eliminarGuitarra = id => {
+        const carritoActualizado = carrito.filter(guitarraState => guitarraState.id !== id)
+        setCarrito(carritoActualizado)
+    }
     return (
         <Document>
             <Outlet
                 context={{
                     agregarCarrito,
-                    carrito
+                    carrito,
+                    actualizarCantidad,
+                    eliminarGuitarra
                 }}
             
             />
