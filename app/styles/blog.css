@@ -3,7 +3,7 @@
     grid-template-columns: 1fr;
     gap: 4rem;
 }
-@media(min-width: 768px){
+@media(min-width: 360px){
     .blog{
         grid-template-columns: repeat(2, 1fr);
     }
