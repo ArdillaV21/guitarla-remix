@@ -75,7 +75,7 @@
     border: 1px solid var(--black);
     border-radius: 1rem;
 }
-.formulario input[type="submit"]{
+.formulario input[type="submit"] {
     margin-top: 3rem;
     background-color: var(--black);
     color: var(--white);

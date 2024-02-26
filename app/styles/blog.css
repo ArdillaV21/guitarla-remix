@@ -3,12 +3,12 @@
     grid-template-columns: 1fr;
     gap: 4rem;
 }
-@media(min-width: 360px){
+@media(min-width: 360px) {
     .blog{
         grid-template-columns: repeat(2, 1fr);
     }
 }
-@media(min-width: 992px){
+@media(min-width: 992px) {
     .blog{
         grid-template-columns: repeat(3, 1fr);
     }

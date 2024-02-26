@@ -3,7 +3,7 @@
     align-items: flex-start;
     gap: 5rem;
 }
-@media(min-width: 360px){
+@media(min-width: 360px) {
     .contenido{
         grid-template-columns: 3fr 2fr;
     }
